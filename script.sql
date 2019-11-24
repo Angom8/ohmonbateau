@@ -1,12 +1,22 @@
+#------------------------------------------------------------
+# Piece
+#------------------------------------------------------------
+
 DROP TABLE IF EXISTS Piece ;
-CREATE TABLE Piece (id_piece BIGINT AUTO_INCREMENT NOT NULL,
-revisions_periodiques_piece TIMESTAMP,
-duree_vie_piece TIMESTAMP,
-quantite_piece BIGINT,
-piece_origine BOOL,
-q_piece_rechange BIGINT,
-id_type_piece BIGINT,
-PRIMARY KEY (id_piece)) ENGINE=InnoDB;
+CREATE TABLE Piece (
+  id_piece BIGINT AUTO_INCREMENT NOT NULL,
+  revisions_periodiques_piece TIMESTAMP,
+  duree_vie_piece TIMESTAMP,
+  quantite_piece BIGINT,
+  piece_origine BOOL,
+  q_piece_rechange BIGINT,
+  id_type_piece BIGINT NOT NULL,
+  PRIMARY KEY (id_piece)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# Bateau
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS Bateau ;
 CREATE TABLE Bateau (id_bateau BIGINT AUTO_INCREMENT NOT NULL,
