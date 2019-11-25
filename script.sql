@@ -113,80 +113,152 @@ CREATE TABLE Adresse (
   PRIMARY KEY (id_adresse)
 ) ENGINE=InnoDB;
 
+#------------------------------------------------------------
+#  Equipement
+#------------------------------------------------------------
+
 DROP TABLE IF EXISTS Equipement ;
-CREATE TABLE Equipement (id_equipement BIGINT AUTO_INCREMENT NOT NULL,
-revision_periodique_equip TIMESTAMP,
-duree_vie_equip TIMESTAMP,
-equip_origine BOOL,
-q_equip_rechange BIGINT,
-quantite_equip BIGINT,
-id_type_equipement BIGINT,
-PRIMARY KEY (id_equipement)) ENGINE=InnoDB;
+CREATE TABLE Equipement (
+  id_equipement BIGINT AUTO_INCREMENT NOT NULL,
+  revision_periodique_equip TIMESTAMP,
+  duree_vie_equip TIMESTAMP,
+  equip_origine BOOL,
+  q_equip_rechange BIGINT,
+  quantite_equip BIGINT,
+  id_type_equipement BIGINT NOT NULL,
+  PRIMARY KEY (id_equipement)
+) ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+#  permis
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS Permis ;
-CREATE TABLE Permis (id_permis BIGINT AUTO_INCREMENT NOT NULL,
-nom_permis VARCHAR(200),
-PRIMARY KEY (id_permis)) ENGINE=InnoDB;
+CREATE TABLE Permis (
+  id_permis BIGINT AUTO_INCREMENT NOT NULL,
+  nom_permis VARCHAR(50),
+  PRIMARY KEY (id_permis)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+#  Fournisseur
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS Fournisseur ;
-CREATE TABLE Fournisseur (id_fourni BIGINT AUTO_INCREMENT NOT NULL,
-nom_fourni VARCHAR(200),
-tel_fourni VARCHAR(200),
-mail_fourni VARCHAR(200),
-PRIMARY KEY (id_fourni)) ENGINE=InnoDB;
+CREATE TABLE Fournisseur (
+  id_fourni BIGINT AUTO_INCREMENT NOT NULL,
+  nom_fourni VARCHAR(50),
+  tel_fourni VARCHAR(32),
+  mail_fourni VARCHAR(50),
+  PRIMARY KEY (id_fourni)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# Etat
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS Etat ;
-CREATE TABLE Etat (id_etat BIGINT AUTO_INCREMENT NOT NULL,
-desc_etat VARCHAR(200),
-PRIMARY KEY (id_etat)) ENGINE=InnoDB;
+CREATE TABLE Etat (
+  id_etat BIGINT AUTO_INCREMENT NOT NULL,
+  desc_etat VARCHAR(200),
+  PRIMARY KEY (id_etat)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# Modele
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS Modele ;
-CREATE TABLE Modele (id_modele BIGINT AUTO_INCREMENT NOT NULL,
-nom_modele VARCHAR(200),
-PRIMARY KEY (id_modele)) ENGINE=InnoDB;
+CREATE TABLE Modele (
+  id_modele BIGINT AUTO_INCREMENT NOT NULL,
+  nom_modele VARCHAR(32),
+  PRIMARY KEY (id_modele)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# Marque
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS Marque ;
-CREATE TABLE Marque (id_marque BIGINT AUTO_INCREMENT NOT NULL,
-nom_marque VARCHAR(200),
-PRIMARY KEY (id_marque)) ENGINE=InnoDB;
+CREATE TABLE Marque (
+  id_marque BIGINT AUTO_INCREMENT NOT NULL,
+  nom_marque VARCHAR(32),
+  PRIMARY KEY (id_marque)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# Typiece
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS Type_piece ;
-CREATE TABLE Type_piece (id_type_piece BIGINT AUTO_INCREMENT NOT NULL,
-nom_type_piece VARCHAR(200),
-PRIMARY KEY (id_type_piece)) ENGINE=InnoDB;
+CREATE TABLE Type_piece (
+  id_type_piece BIGINT AUTO_INCREMENT NOT NULL,
+  nom_type_piece VARCHAR(50),
+  PRIMARY KEY (id_type_piece)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# Typequipement
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS Type_Equipement ;
-CREATE TABLE Type_Equipement (id_type_equipement BIGINT AUTO_INCREMENT NOT NULL,
-nom_type_equipement VARCHAR(200),
-PRIMARY KEY (id_type_equipement)) ENGINE=InnoDB;
+CREATE TABLE Type_Equipement (
+  id_type_equipement BIGINT AUTO_INCREMENT NOT NULL,
+  nom_type_equipement VARCHAR(50),
+  PRIMARY KEY (id_type_equipement)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# Immatriculation
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS Immatriculation ;
-CREATE TABLE Immatriculation (id_immatr varchar(100) NOT NULL,
-date_immatr TIMESTAMP,
-bateau_id_bateau BIGINT,
-PRIMARY KEY (id_immatr)) ENGINE=InnoDB;
+CREATE TABLE Immatriculation (
+  id_immatr varchar(100) NOT NULL,
+  date_immatr TIMESTAMP,
+  bateau_id_bateau BIGINT,
+  PRIMARY KEY (id_immatr)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# Moteur
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS Moteur ;
 CREATE TABLE Moteur (id_moteur BIGINT AUTO_INCREMENT NOT NULL,
-puissance_moteur FLOAT,
-kilometrage FLOAT,
-horametre_compte FLOAT,
-id_equipement BIGINT,
-PRIMARY KEY (id_moteur)) ENGINE=InnoDB;
+  puissance_moteur FLOAT,
+  kilometrage FLOAT NOT NULL,
+  horametre_compte FLOAT,
+  id_equipement BIGINT,
+  PRIMARY KEY (id_moteur)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# Port
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS Port ;
-CREATE TABLE Port (id_port BIGINT AUTO_INCREMENT NOT NULL,
-latt_port FLOAT,
-long_port FLOAT,
-id_adresse BIGINT,
-PRIMARY KEY (id_port)) ENGINE=InnoDB;
+CREATE TABLE Port (
+  id_port BIGINT AUTO_INCREMENT NOT NULL,
+  latt_port FLOAT,
+  long_port FLOAT,
+  id_adresse BIGINT,
+  PRIMARY KEY (id_port)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# Accident
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS Accident ;
-CREATE TABLE Accident (id_accident BIGINT AUTO_INCREMENT NOT NULL,
-date_accident TIMESTAMP,
-nb_morts BIGINT,
-nb_bless BIGINT,
-PRIMARY KEY (id_accident)) ENGINE=InnoDB;
+CREATE TABLE Accident (
+  id_accident BIGINT AUTO_INCREMENT NOT NULL,
+  date_accident TIMESTAMP NOT NULL,
+  nb_morts BIGINT,
+  nb_bless BIGINT,
+  PRIMARY KEY (id_accident)
+) ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS Ville ;
 CREATE TABLE Ville (id_ville BIGINT AUTO_INCREMENT NOT NULL,
