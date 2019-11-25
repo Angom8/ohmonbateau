@@ -19,73 +19,99 @@ CREATE TABLE Piece (
 #------------------------------------------------------------
 
 DROP TABLE IF EXISTS Bateau ;
-CREATE TABLE Bateau (id_bateau BIGINT AUTO_INCREMENT NOT NULL,
-nom_bateau VARCHAR(200),
-nb_mat BIGINT,
-surface_voilure FLOAT,
-dimension_x_bateau FLOAT,
-dimension_y_bateau FLOAT,
-ancienne_cat VARCHAR(1),
-distance_eloignement BIGINT,
-volume_coque FLOAT,
-force_vent_max FLOAT,
-hauteur_max_vagues FLOAT,
-dimension_z_bateau FLOAT,
-consommation FLOAT,
-niveau_reserve FLOAT,
-nb_places BIGINT,
-date_construction TIMESTAMP,
-auto_videur BOOL,
-niveau_carburant_max FLOAT,
-niveau_performance FLOAT,
-jauge_brut FLOAT,
-masse_navire FLOAT,
-hors_bord BOOL,
-francise BOOL,
-niveau_huile FLOAT,
-niveau_liquide_refroidissement FLOAT,
-url_photo VARCHAR(1),
-immatriculation_id_immatr VARCHAR(200),
-moteur_id_moteur BIGINT,
-port_id_port BIGINT,
-PRIMARY KEY (id_bateau)) ENGINE=InnoDB;
+CREATE TABLE Bateau (
+  id_bateau BIGINT AUTO_INCREMENT NOT NULL,
+  nom_bateau VARCHAR(32),
+  nb_mat BIGINT,
+  surface_voilure FLOAT,
+  dimension_x_bateau FLOAT,
+  dimension_y_bateau FLOAT,
+  ancienne_cat VARCHAR(1),
+  distance_eloignement BIGINT,
+  volume_coque FLOAT,
+  force_vent_max FLOAT,
+  hauteur_max_vagues FLOAT,
+  dimension_z_bateau FLOAT,
+  consommation FLOAT,
+  niveau_reserve FLOAT,
+  nb_places BIGINT,
+  date_construction TIMESTAMP,
+  auto_videur BOOL,
+  niveau_carburant_max FLOAT,
+  niveau_performance FLOAT,
+  jauge_brut FLOAT,
+  masse_navire FLOAT,
+  hors_bord BOOL,
+  francise BOOL,
+  niveau_huile FLOAT,
+  niveau_liquide_refroidissement FLOAT,
+  url_photo VARCHAR(200),
+  immatriculation_id_immatr VARCHAR(25),
+  moteur_id_moteur BIGINT,
+  port_id_port BIGINT,
+  PRIMARY KEY (id_bateau)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# Voyage
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS Voyage ;
-CREATE TABLE Voyage (id_voyage BIGINT AUTO_INCREMENT NOT NULL,
-d_voyage FLOAT,
-participants_max BIGINT,
-participants_min BIGINT,
-date_depart TIMESTAMP,
-date_retour TIMESTAMP,
-cout_voyage FLOAT,
-id_utilisateur BIGINT,
-id_port BIGINT,
-id_port_est_port_arrivé BIGINT,
-PRIMARY KEY (id_voyage)) ENGINE=InnoDB;
+CREATE TABLE Voyage (
+  id_voyage BIGINT AUTO_INCREMENT NOT NULL,
+  d_voyage FLOAT,
+  participants_max BIGINT NOT NULL,
+  participants_min BIGINT NOT NULL,
+  date_depart TIMESTAMP NOT NULL,
+  date_retour TIMESTAMP NOT NULL,
+  cout_voyage FLOAT,
+  id_utilisateur BIGINT,
+  id_port BIGINT,
+  id_port_est_port_arrivé BIGINT,
+  PRIMARY KEY (id_voyage)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+#  Utilisateur
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS Utilisateur ;
-CREATE TABLE Utilisateur (id_utilisateur BIGINT AUTO_INCREMENT NOT NULL,
-login VARCHAR(200),
-password VARCHAR(200),
-type_utilisateur BIGINT,
-nom_utilisateur VARCHAR(200),
-prenom_utilisateur VARCHAR(200),
-tel_utilisateur BIGINT,
-mail_utilisateur VARCHAR(200),
-id_adresse BIGINT,
-PRIMARY KEY (id_utilisateur)) ENGINE=InnoDB;
+CREATE TABLE Utilisateur (
+  id_utilisateur BIGINT AUTO_INCREMENT NOT NULL,
+  login VARCHAR(32),
+  password VARCHAR(32),
+  type_utilisateur BIGINT,
+  nom_utilisateur VARCHAR(200),
+  prenom_utilisateur VARCHAR(200),
+  tel_utilisateur BIGINT NOT NULL,
+  mail_utilisateur VARCHAR(200),
+  id_adresse BIGINT,
+  PRIMARY KEY (id_utilisateur)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+#  Entretien
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS Entretien ;
-CREATE TABLE Entretien (id_entretien BIGINT AUTO_INCREMENT NOT NULL,
-date_entretien TIMESTAMP,
-PRIMARY KEY (id_entretien)) ENGINE=InnoDB;
+CREATE TABLE Entretien (
+  id_entretien BIGINT AUTO_INCREMENT NOT NULL,
+  date_entretien TIMESTAMP,
+  PRIMARY KEY (id_entretien)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+#  Adresse
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS Adresse ;
-CREATE TABLE Adresse (id_adresse BIGINT AUTO_INCREMENT NOT NULL,
-numero_adresse VARCHAR(200),
-voierie VARCHAR(200),
-id_ville BIGINT,
-PRIMARY KEY (id_adresse)) ENGINE=InnoDB;
+CREATE TABLE Adresse (
+  id_adresse BIGINT AUTO_INCREMENT NOT NULL,
+  numero_adresse VARCHAR(10),
+  voierie VARCHAR(50),
+  id_ville BIGINT,
+  PRIMARY KEY (id_adresse)
+) ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS Equipement ;
 CREATE TABLE Equipement (id_equipement BIGINT AUTO_INCREMENT NOT NULL,
