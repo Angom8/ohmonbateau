@@ -466,6 +466,10 @@ CREATE TABLE est_dans (
   PRIMARY KEY (id_equipement, id_piece, id_etat)
 ) ENGINE=InnoDB;
 
+#------------------------------------------------------------
+# Lien entre les tables
+#------------------------------------------------------------
+
 ALTER TABLE Piece ADD CONSTRAINT FK_Piece_id_type_piece FOREIGN KEY (id_type_piece) REFERENCES Type_piece (id_type_piece);
 ALTER TABLE Bateau ADD CONSTRAINT FK_Bateau_immatriculation_id_immatr FOREIGN KEY (immatriculation_id_immatr) REFERENCES Immatriculation (id_immatr);
 ALTER TABLE Bateau ADD CONSTRAINT FK_Bateau_moteur_id_moteur FOREIGN KEY (moteur_id_moteur) REFERENCES Moteur (id_moteur);
