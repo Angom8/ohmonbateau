@@ -260,124 +260,211 @@ CREATE TABLE Accident (
   PRIMARY KEY (id_accident)
 ) ENGINE=InnoDB;
 
+#------------------------------------------------------------
+# Ville
+#------------------------------------------------------------
+
 DROP TABLE IF EXISTS Ville ;
-CREATE TABLE Ville (id_ville BIGINT AUTO_INCREMENT NOT NULL,
-nom_ville VARCHAR(200),
-code_postal BIGINT,
-id_pays BIGINT,
-PRIMARY KEY (id_ville)) ENGINE=InnoDB;
+CREATE TABLE Ville (
+  id_ville BIGINT AUTO_INCREMENT NOT NULL,
+  nom_ville VARCHAR(32),
+  code_postal BIGINT,
+  id_pays BIGINT,
+  PRIMARY KEY (id_ville)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# Pays
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS Pays ;
-CREATE TABLE Pays (id_pays BIGINT AUTO_INCREMENT NOT NULL,
-planete VARCHAR(200),
-nom_pays VARCHAR(200),
-PRIMARY KEY (id_pays)) ENGINE=InnoDB;
+CREATE TABLE Pays (
+  id_pays BIGINT AUTO_INCREMENT NOT NULL,
+  planete VARCHAR(32),
+  nom_pays VARCHAR(32),
+  PRIMARY KEY (id_pays)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# Possède
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS Possède ;
-CREATE TABLE Possède (id_utilisateur  BIGINT,
-id_bateau BIGINT,
-PRIMARY KEY (id_utilisateur,
- id_bateau)) ENGINE=InnoDB;
+CREATE TABLE Possède (
+  id_utilisateur  BIGINT,
+  id_bateau BIGINT,
+  PRIMARY KEY (id_utilisateur, id_bateau)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# A_passsé
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS A_passé ;
-CREATE TABLE A_passé (id_utilisateur  BIGINT,
-id_permis BIGINT,
-PRIMARY KEY (id_utilisateur,
- id_permis)) ENGINE=InnoDB;
+CREATE TABLE A_passé (
+  id_utilisateur  BIGINT,
+  id_permis BIGINT,
+  PRIMARY KEY (id_utilisateur, id_permis)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# participe
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS participe ;
-CREATE TABLE participe (id_utilisateur  BIGINT,
-id_voyage BIGINT,
-PRIMARY KEY (id_utilisateur,
- id_voyage)) ENGINE=InnoDB;
+CREATE TABLE participe (
+  id_utilisateur  BIGINT,
+  id_voyage BIGINT,
+  PRIMARY KEY (id_utilisateur, id_voyage)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# utilise_couramment
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS utilise_couramment ;
-CREATE TABLE utilise_couramment (id_utilisateur  BIGINT,
-id_bateau BIGINT,
-PRIMARY KEY (id_utilisateur,
- id_bateau)) ENGINE=InnoDB;
+CREATE TABLE utilise_couramment (
+  id_utilisateur  BIGINT,
+  id_bateau BIGINT,
+  PRIMARY KEY (id_utilisateur, id_bateau)
+ ) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# Necessite
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS Necessite ;
-CREATE TABLE Necessite (id_bateau  BIGINT,
-id_permis  BIGINT,
-PRIMARY KEY (id_bateau,
- id_permis)) ENGINE=InnoDB;
+CREATE TABLE Necessite (
+  id_bateau  BIGINT,
+  id_permis  BIGINT,
+  PRIMARY KEY (id_bateau, id_permis)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# est_impliqué
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS est_impliqué ;
-CREATE TABLE est_impliqué (id_bateau  BIGINT,
-id_accident BIGINT,
-PRIMARY KEY (id_bateau,
- id_accident)) ENGINE=InnoDB;
+CREATE TABLE est_impliqué (
+  id_bateau  BIGINT,
+  id_accident BIGINT,
+  PRIMARY KEY (id_bateau, id_accident)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# contient
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS contient ;
-CREATE TABLE contient (id_bateau BIGINT,
-id_piece  BIGINT,
-PRIMARY KEY (id_bateau,
- id_piece)) ENGINE=InnoDB;
+CREATE TABLE contient (
+  id_bateau BIGINT,
+  id_piece  BIGINT,
+  PRIMARY KEY (id_bateau, id_piece)
+ ) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# comporte
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS comporte ;
-CREATE TABLE comporte (id_bateau  BIGINT,
-id_equipement  BIGINT,
-PRIMARY KEY (id_bateau,
- id_equipement)) ENGINE=InnoDB;
+CREATE TABLE comporte (
+  id_bateau  BIGINT,
+  id_equipement  BIGINT,
+  PRIMARY KEY (id_bateau, id_equipement)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# reçoit
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS reçoit ;
-CREATE TABLE reçoit (id_bateau  BIGINT,
-id_entretien  BIGINT,
-PRIMARY KEY (id_bateau,
- id_entretien)) ENGINE=InnoDB;
+CREATE TABLE reçoit (
+  id_bateau  BIGINT,
+  id_entretien  BIGINT,
+  PRIMARY KEY (id_bateau, id_entretien)
+ ) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# concerne
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS concerne ;
-CREATE TABLE concerne (id_equipement  BIGINT,
-id_piece  BIGINT,
-id_entretien  BIGINT,
-PRIMARY KEY (id_equipement,
- id_piece,
- id_entretien)) ENGINE=InnoDB;
+CREATE TABLE concerne (
+  id_equipement  BIGINT,
+  id_piece  BIGINT,
+  id_entretien  BIGINT,
+  PRIMARY KEY (id_equipement, id_piece, id_entretien)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# est_composé
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS est_composé ;
-CREATE TABLE est_composé (id_equipement  BIGINT,
-id_piece  BIGINT,
-PRIMARY KEY (id_equipement,
- id_piece)) ENGINE=InnoDB;
+CREATE TABLE est_composé (
+  id_equipement  BIGINT,
+  id_piece  BIGINT,
+  PRIMARY KEY (id_equipement, id_piece)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# produit_par
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS produit_par ;
-CREATE TABLE produit_par (id_modele  BIGINT,
-id_marque  BIGINT,
-PRIMARY KEY (id_modele,
- id_marque)) ENGINE=InnoDB;
+CREATE TABLE produit_par (
+  id_modele  BIGINT,
+  id_marque  BIGINT,
+  PRIMARY KEY (id_modele, id_marque)
+ ) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# est_renseigné_sous
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS est_renseigné_sous ;
-CREATE TABLE est_renseigné_sous (id_equipement BIGINT,
-id_piece  BIGINT,
-id_bateau  BIGINT,
-id_modele  BIGINT,
-PRIMARY KEY (id_equipement,
- id_piece,
- id_bateau,
- id_modele)) ENGINE=InnoDB;
+CREATE TABLE est_renseigné_sous (
+  id_equipement BIGINT,
+  id_piece  BIGINT,
+  id_bateau  BIGINT,
+  id_modele  BIGINT,
+  PRIMARY KEY (id_equipement, id_piece, id_bateau, id_modele)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# fournit
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS fournit ;
-CREATE TABLE fournit (id_fourni  BIGINT,
-id_equipement  BIGINT,
-id_piece  BIGINT,
-PRIMARY KEY (id_fourni,
- id_equipement,
- id_piece)) ENGINE=InnoDB;
+CREATE TABLE fournit (
+  id_fourni  BIGINT,
+  id_equipement  BIGINT,
+  id_piece  BIGINT,
+  PRIMARY KEY (id_fourni, id_equipement, id_piece)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# est_localisé
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS est_localisé ;
-CREATE TABLE est_localisé (id_fourni  BIGINT,
-id_adresse  BIGINT,
-PRIMARY KEY (id_fourni,
- id_adresse)) ENGINE=InnoDB;
+CREATE TABLE est_localisé (
+  id_fourni  BIGINT,
+  id_adresse  BIGINT,
+  PRIMARY KEY (id_fourni, id_adresse)
+) ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# est_dans
+#------------------------------------------------------------
 
 DROP TABLE IF EXISTS est_dans ;
-CREATE TABLE est_dans (id_equipement BIGINT,
-id_piece  BIGINT,
-id_etat  BIGINT,
-PRIMARY KEY (id_equipement,
- id_piece,
- id_etat)) ENGINE=InnoDB;
+CREATE TABLE est_dans (
+  id_equipement BIGINT,
+  id_piece  BIGINT,
+  id_etat  BIGINT,
+  PRIMARY KEY (id_equipement, id_piece, id_etat)
+) ENGINE=InnoDB;
 
 ALTER TABLE Piece ADD CONSTRAINT FK_Piece_id_type_piece FOREIGN KEY (id_type_piece) REFERENCES Type_piece (id_type_piece);
 ALTER TABLE Bateau ADD CONSTRAINT FK_Bateau_immatriculation_id_immatr FOREIGN KEY (immatriculation_id_immatr) REFERENCES Immatriculation (id_immatr);
