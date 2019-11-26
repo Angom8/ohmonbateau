@@ -81,9 +81,9 @@ CREATE TABLE Utilisateur (
   login VARCHAR(32),
   password VARCHAR(32),
   type_utilisateur BIGINT,
-  nom_utilisateur VARCHAR(200),
-  prenom_utilisateur VARCHAR(200),
-  tel_utilisateur BIGINT NOT NULL,
+  nom_utilisateur VARCHAR(50),
+  prenom_utilisateur VARCHAR(50),
+  tel_utilisateur VARCHAR(50) NOT NULL,
   mail_utilisateur VARCHAR(200),
   id_adresse BIGINT,
   PRIMARY KEY (id_utilisateur)
